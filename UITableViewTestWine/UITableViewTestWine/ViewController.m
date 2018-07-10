@@ -10,6 +10,7 @@
 #import "Wine.h"
 @interface ViewController () <UITableViewDataSource>
 @property(nonatomic,strong)NSArray *wineArr;
+@property(nonatomic,strong)IBOutlet UITableView *tableView;
 @end
 
 @implementation ViewController
@@ -27,6 +28,27 @@
         [tableArray addObject:wine];
     }
     self.wineArr = tableArray;
+    
+    //设置TableView的头部高度
+    self.tableView.sectionHeaderHeight = 100;
+    //设置TableView的尾部标题
+    self.tableView.sectionFooterHeight = 100;
+    //设置每行的高度
+    self.tableView.rowHeight = 80;
+    //设置tableView的分割线颜色
+    self.tableView.separatorColor = [UIColor redColor];
+    //设置tableView的分割线样式
+    //如果分割线样式为none，则颜色属性设置无效
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //设置tableView的头部中的UIView
+    //self.tableView.tableHeaderView = ...
+    //同tableHeaderView
+    //self.tableView.tableFooterView = ...
+    
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
 
 //设置每组多少行
@@ -48,4 +70,11 @@
     return cell;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"头部标题";
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return @"尾部标题";
+}
 @end
