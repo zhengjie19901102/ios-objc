@@ -45,6 +45,8 @@
     //同tableHeaderView
     //self.tableView.tableFooterView = ...
     
+    
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -59,6 +61,18 @@
 //设置每组的数据
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor redColor];
+    //cell常用属性
+    cell.backgroundColor = [UIColor blueColor];
+    cell.backgroundView = [[UIView alloc] init];
+    //设置选中时的背景视图
+    //cell.selectedBackgroundView = [[UIView alloc] init];
+    
+    //cell中的labelText和detailText还有ImageView实际都是contentView的内部空间。TableVIewCell可以直接通过属性操作这三个空间
+    //同时，cell中的contentView的是三个控件是懒加载
+    NSLog(@"%p ----- %p", cell.imageView.subviews,cell.contentView);
     
     //当前行的酒数据
     Wine *wine = self.wineArr[indexPath.row];
